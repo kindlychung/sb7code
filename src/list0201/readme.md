@@ -1,0 +1,1 @@
+* fill the canvas with one color

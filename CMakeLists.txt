@@ -1,5 +1,7 @@
 cmake_minimum_required (VERSION 2.6)
 
+set(CMAKE_CXX_STANDARD 17)
+
 project (superbible7)
 
 LINK_DIRECTORIES( ${CMAKE_SOURCE_DIR}/lib )
@@ -128,6 +130,8 @@ set(EXAMPLES
   toonshading
   tunnel
   wrapmodes
+  list0201
+  list0202
 )
 
 find_package(OpenMP)
