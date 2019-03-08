@@ -1,3 +1,4 @@
-bin/
-build/
+bin
+build
 *.txt.user
+cmake_tools_build
