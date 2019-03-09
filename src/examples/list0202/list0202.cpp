@@ -1,8 +1,9 @@
 #include "sb7.h"
 
+
 class my_application : public sb7::application {
    private:
-    float color[3] = {1.f, .5f, .5f};
+    float color[3] = {1.f, .7f, .5f};
 
    public:
     my_application();

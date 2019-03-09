@@ -132,6 +132,7 @@ set(EXAMPLES
   wrapmodes
   list0201
   list0202
+  list0203
 )
 
 find_package(OpenMP)
@@ -140,8 +141,12 @@ if (OPENMP_FOUND)
     set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
 endif()
 
-foreach(EXAMPLE ${EXAMPLES})
-  add_executable(${EXAMPLE} WIN32 src/${EXAMPLE}/${EXAMPLE}.cpp)
+
+FILE(GLOB LISTEXAMPLES RELATIVE ${PROJECT_SOURCE_DIR}/src/examples ${PROJECT_SOURCE_DIR}/src/examples/*)
+foreach(EXAMPLE ${LISTEXAMPLES})
+  FILE(GLOB CPPFILES RELATIVE ${PROJECT_SOURCE_DIR} ${PROJECT_SOURCE_DIR}/src/examples/${EXAMPLE}/*.cpp)
+  # add_executable(${EXAMPLE} WIN32 src/examples/${EXAMPLE}/${EXAMPLE}.cpp)
+  add_executable(${EXAMPLE} WIN32 ${CPPFILES})
   set_property(TARGET ${EXAMPLE} PROPERTY DEBUG_POSTFIX _d)
   target_link_libraries(${EXAMPLE} ${COMMON_LIBS})
   if(MSVC)

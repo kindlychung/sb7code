@@ -7,9 +7,9 @@ echo "incrementCodeFolder.sh newchapter"
 exit 0
 fi
 # find the lastest code list folder
-lastlist=$(ls -1d src/list* | sort | tail -n1)
+lastlist=$(ls -1d src/examples/list* | sort | tail -n1)
 # remove prefix and find out list number
-listNumber=${lastlist#src/list0}
+listNumber=${lastlist#src/examples/list0}
 
 if [[ $1 == "newchapter" ]]; then
     newChapterNumber=$((listNumber + 100))
@@ -26,5 +26,5 @@ fi
 
 
 echo "Copying...."
-cp -av "$lastlist" "src/$newListName"
-mv  -v src/$newListName/*.cpp src/$newListName/$newListName.cpp
+cp -av "$lastlist" "src/examples/$newListName"
+mv  -v src/examples/$newListName/list*.cpp src/examples/$newListName/$newListName.cpp
