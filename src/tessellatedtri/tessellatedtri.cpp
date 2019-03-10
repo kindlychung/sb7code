@@ -1,5 +1,5 @@
 /*
- * Copyright © 2012-2015 Graham Sellers
+ * Copyright ï¿½ 2012-2015 Graham Sellers
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -38,7 +38,7 @@ class tessellatedtri_app : public sb7::application
     {
         static const char * vs_source[] =
         {
-            "#version 410 core                                                 \n"
+            "#version 450 core                                                 \n"
             "                                                                  \n"
             "void main(void)                                                   \n"
             "{                                                                 \n"
@@ -52,7 +52,7 @@ class tessellatedtri_app : public sb7::application
 
         static const char * tcs_source[] =
         {
-            "#version 410 core                                                                 \n"
+            "#version 450 core                                                                 \n"
             "                                                                                  \n"
             "layout (vertices = 3) out;                                                        \n"
             "                                                                                  \n"
@@ -71,10 +71,8 @@ class tessellatedtri_app : public sb7::application
 
         static const char * tes_source[] =
         {
-            "#version 410 core                                                                 \n"
-            "                                                                                  \n"
+            "#version 450 core                                                                 \n"
             "layout (triangles, equal_spacing, cw) in;                                         \n"
-            "                                                                                  \n"
             "void main(void)                                                                   \n"
             "{                                                                                 \n"
             "    gl_Position = (gl_TessCoord.x * gl_in[0].gl_Position) +                       \n"
@@ -85,10 +83,8 @@ class tessellatedtri_app : public sb7::application
 
         static const char * fs_source[] =
         {
-            "#version 410 core                                                 \n"
-            "                                                                  \n"
+            "#version 450 core                                                 \n"
             "out vec4 color;                                                   \n"
-            "                                                                  \n"
             "void main(void)                                                   \n"
             "{                                                                 \n"
             "    color = vec4(0.0, 0.8, 1.0, 1.0);                             \n"

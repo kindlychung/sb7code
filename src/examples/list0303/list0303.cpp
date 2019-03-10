@@ -10,21 +10,25 @@ GLuint compile_shaders(void) {
         // it's put in location 0
         "layout (location = 0) in vec4 offset;  \n"
         "layout (location = 1) in vec4 color;   \n"
-        "out vec4 vs_color;   \n"
+        "out VS_out {   \n"
+        "    vec4 color;"
+        "} vs_out; \n"
         "void main(void) {\n"
         "    const vec4 vertices[3] = vec4[3](vec4(0.25, -0.25, .5, 1.0), \n"
         "                                     vec4(-0.25, -0.25, .5, 1.0), \n"
         "                                     vec4(0., 0.35, .5, 1.0)); \n"
         "    gl_Position = vertices[gl_VertexID] + offset; \n"
-        "    vs_color = color; \n"
+        "    vs_out.color = color; \n"
         "}\n"
     };
     static const GLchar* fragment_shader_source[] = {
         "#version 450 core \n"
         "out vec4 color; \n"
-        "in vec4 vs_color; \n"
+        "in VS_out {  \n"
+        "    vec4 color; \n"
+        "} fs_in; \n"
         "void main(void) {\n"
-        "    color = vs_color;\n"
+        "    color = fs_in.color;\n"
         "}\n"
     };
     vertex_shader = glCreateShader(GL_VERTEX_SHADER);
