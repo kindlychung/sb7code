@@ -19,8 +19,7 @@ GLuint compile_shaders(void) {
         "                                     vec4(0., 0.35, .5, 1.0)); \n"
         "    gl_Position = vertices[gl_VertexID] + offset; \n"
         "    vs_out.color = color; \n"
-        "}\n"
-    };
+        "}\n"};
     static const GLchar* fragment_shader_source[] = {
         "#version 450 core \n"
         "out vec4 color; \n"
@@ -29,8 +28,7 @@ GLuint compile_shaders(void) {
         "} fs_in; \n"
         "void main(void) {\n"
         "    color = fs_in.color;\n"
-        "}\n"
-    };
+        "}\n"};
     vertex_shader = glCreateShader(GL_VERTEX_SHADER);
     glShaderSource(vertex_shader, 1, vertex_shader_source, NULL);
     glCompileShader(vertex_shader);
@@ -64,7 +62,6 @@ class my_application : public sb7::application {
     void shutdown() {
         glDeleteVertexArrays(1, &vertex_array_object);
         glDeleteProgram(rendering_program);
-        glDeleteVertexArrays(1, &vertex_array_object);
     }
 };
 
@@ -76,12 +73,9 @@ void my_application::render(double currentTime) {
     glClearBufferfv(GL_COLOR, 0, bg_color);
     fg_color[2] = color_var;
     glUseProgram(rendering_program);
-    float attrib[] = {
-        (float) sin(currentTime) * .5f,
-        (float) cos(currentTime) * .5f,
-        .0f, .0f
-    };
-    glVertexAttrib4fv(0, attrib);
+    float offset[] = {(float)sin(currentTime) * .5f,
+                      (float)cos(currentTime) * .5f, .0f, .0f};
+    glVertexAttrib4fv(0, offset);
     glVertexAttrib4fv(1, fg_color);
     glDrawArrays(GL_TRIANGLES, 0, 3);
 }
